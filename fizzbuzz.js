@@ -1,7 +1,13 @@
 // This is our main function
 
 function fizzbuzz() {
-    for (let i = 1; i < 100 + 1; i++) {
+    let userInput = "xxx";
+    const prompt = require('prompt-sync')();
+    while (invalidInput(userInput)) {
+        userInput = parseInt(prompt('Max number?'));
+    }
+
+    for (let i = 1; i < userInput + 1; i++) {
         let output = "";
         if (i % 3 === 0) {
             output += "Fizz";
@@ -23,7 +29,6 @@ function fizzbuzz() {
                 output += "Fezz";
             }
         }
-
         if (i % 17 === 0) {
             output = reverse(output);
         }
@@ -33,7 +38,9 @@ function fizzbuzz() {
         console.log(output)
     }
 }
-
+function invalidInput(input){
+    return isNaN(input) || input <=0
+}
 function reverse(text) {
     if (text === "") {
         return text
@@ -44,7 +51,6 @@ function reverse(text) {
         reversed += text.substring(currentIndex, currentIndex + 4);
         currentIndex -= 4;
     }
-
     return reversed
 }
 
